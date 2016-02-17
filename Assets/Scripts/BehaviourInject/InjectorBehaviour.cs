@@ -63,24 +63,26 @@ namespace BehaviourInject
         {
             Type componentType = behaviour.GetType();
 
-            PropertyInfo[] properties = componentType.GetProperties();
+            ClassDataHolder data = ReflectionDataCache.GetClassData(componentType);
 
-            for (int i = 0; i < properties.Length; i++)
+            //PropertyInfo[] properties = ReflectionDataCache.GetPropertyInfos(componentType);
+
+            for (int i = 0; i < data.PropertyInfos.Length; i++)
             {
-                PropertyInfo property = properties[i];
-                if (NotForInjection(property)) continue;
+                PropertyInfo property = data.PropertyInfos[i];
+                if (data.PropertyAttributes[i]) continue;
                 ThrowIfNotNull(property.GetValue(behaviour, null));
 
                 object dependency = _context.Resolve(property.PropertyType);
                 property.SetValue(behaviour, dependency, null);
             }
             
-            FieldInfo[] fields = componentType.GetFields();
+            //FieldInfo[] fields = ReflectionDataCache.GetFieldInfos(componentType);
 
-            for (int i = 0; i < fields.Length; i++)
+            for (int i = 0; i < data.FieldInfos.Length; i++)
             {
-                FieldInfo field = fields[i];
-                if (NotForInjection(field)) continue;
+                FieldInfo field = data.FieldInfos[i];
+                if (data.FieldAttributes[i]) continue;
                 ThrowIfNotNull(field.GetValue(behaviour));
                 
                 object dependency = _context.Resolve(field.FieldType);
@@ -96,10 +98,10 @@ namespace BehaviourInject
         }
 
 
-        private bool NotForInjection(MemberInfo property)
-        {
-            object[] attributes = property.GetCustomAttributes(typeof(InjectAttribute), true);
-            return attributes.Length == 0;
-        }
+        //private bool NotForInjection(MemberInfo property)
+        //{
+        //    object[] attributes = property.GetCustomAttributes(typeof(InjectAttribute), true);
+        //    return attributes.Length == 0;
+        //}
     }
 }
