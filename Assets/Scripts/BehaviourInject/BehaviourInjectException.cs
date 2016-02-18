@@ -28,7 +28,6 @@ namespace BehaviourInject
 {
     public class BehaviourInjectException : Exception
     {
-        public BehaviourInjectException(string message) : base(message)
-        { }
+        public BehaviourInjectException(string message) : base(message) { }
     }
 }

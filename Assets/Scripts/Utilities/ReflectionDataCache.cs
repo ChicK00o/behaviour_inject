@@ -28,12 +28,12 @@ namespace BehaviourInject
             return _cachedValues[type];
         }
 
-        public static PropertyInfo[] GetPropertyInfos(Type type)
-        {
-            if (!_cachedValues.ContainsKey(type))
-                ReflectValues(type);
-            return _cachedValues[type].PropertyInfos;
-        }
+        //public static PropertyInfo[] GetPropertyInfos(Type type)
+        //{
+        //    if (!_cachedValues.ContainsKey(type))
+        //        ReflectValues(type);
+        //    return _cachedValues[type].PropertyInfos;
+        //}
 
         private static void ReflectValues(Type type)
         {
@@ -55,12 +55,12 @@ namespace BehaviourInject
             _cachedValues.Add(type, data);
         }
 
-        public static FieldInfo[] GetFieldInfos(Type type)
-        {
-            if (!_cachedValues.ContainsKey(type))
-                ReflectValues(type);
-            return _cachedValues[type].FieldInfos;
-        }
+        //public static FieldInfo[] GetFieldInfos(Type type)
+        //{
+        //    if (!_cachedValues.ContainsKey(type))
+        //        ReflectValues(type);
+        //    return _cachedValues[type].FieldInfos;
+        //}
 
         public static void PreFetchReflectionData<T>(T type) where T : MonoBehaviour
         {

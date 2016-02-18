@@ -62,10 +62,7 @@ namespace BehaviourInject
         private void ProcessBehaviour(MonoBehaviour behaviour)
         {
             Type componentType = behaviour.GetType();
-
             ClassDataHolder data = ReflectionDataCache.GetClassData(componentType);
-
-            //PropertyInfo[] properties = ReflectionDataCache.GetPropertyInfos(componentType);
 
             for (int i = 0; i < data.PropertyInfos.Length; i++)
             {
@@ -77,8 +74,6 @@ namespace BehaviourInject
                 property.SetValue(behaviour, dependency, null);
             }
             
-            //FieldInfo[] fields = ReflectionDataCache.GetFieldInfos(componentType);
-
             for (int i = 0; i < data.FieldInfos.Length; i++)
             {
                 FieldInfo field = data.FieldInfos[i];
@@ -96,12 +91,5 @@ namespace BehaviourInject
             if (value != null)
                 throw new BehaviourInjectException("Property to inject is not null!");
         }
-
-
-        //private bool NotForInjection(MemberInfo property)
-        //{
-        //    object[] attributes = property.GetCustomAttributes(typeof(InjectAttribute), true);
-        //    return attributes.Length == 0;
-        //}
     }
 }
