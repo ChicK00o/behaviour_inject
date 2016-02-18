@@ -54,7 +54,7 @@ namespace BehaviourInject
         }
 
 
-        public static Context GetContext(string name)
+        public static Context GetContext(string name = "default")
         {
             if (!_contextRegistry.ContainsKey(name))
                 throw new BehaviourInjectException(String.Format("Context with name \"{0}\" does not exist!", name));

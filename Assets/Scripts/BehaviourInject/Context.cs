@@ -171,7 +171,7 @@ namespace BehaviourInject
 
         private bool HasAttribute(MemberInfo constructor)
         {
-            object[] attributes = constructor.GetCustomAttributes(typeof(InjectAttribute), true);
+            object[] attributes = constructor.GetCustomAttributes(typeof(InjectAttribute), false);
             return attributes.Length > 0;
         }
 

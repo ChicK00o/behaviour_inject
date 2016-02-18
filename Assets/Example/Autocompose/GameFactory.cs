@@ -9,6 +9,7 @@ public class GameFactory : DependencyFactory
 {
     private Connection _connection;
 
+    private int _index = 0;
 
     public GameFactory(Connection connection)
     {
@@ -19,9 +20,12 @@ public class GameFactory : DependencyFactory
     public object Create()
     {
         Debug.Log("create game from factory. Connected = " + _connection.Connected);
-        
+
         if (_connection.Connected)
-            return new Game(1, "connected game");
+        {
+            _index++;
+            return new Game(_index, "connected game");
+        }
         else
             return null;
     }

@@ -9,6 +9,7 @@ public class InitiatorBehaviour : MonoBehaviour {
     
 	// Use this for initialization
 	void Awake () {
+        Debug.Log("1");
 
         DataModel dataModel = new DataModel("dataOne");
         Network networker = new Network();
@@ -23,7 +24,9 @@ public class InitiatorBehaviour : MonoBehaviour {
         _context2 = new Context("test");
         _context2.RegisterDependency(mockData);
         _context2.RegisterDependencyAs<MockReader, IReader>(mockReader);
-	}
+
+        Debug.Log("2");
+    }
 
 
     void OnDestroy()

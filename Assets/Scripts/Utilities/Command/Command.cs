@@ -20,7 +20,7 @@ namespace BehaviourInject
             _context = ContextRegistry.GetContext(contextName);
         }
 
-        public virtual void ResolveSelf()
+        public void ResolveSelf()
         {
             Type componentType = GetType();
             ClassDataHolder data = ReflectionDataCache.GetClassData(componentType);
